@@ -29,4 +29,3 @@ docker-compose.yml
 
 # Batch files
 *.bat
-*.sh
