@@ -12,15 +12,15 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo Creating executable...
-pyinstaller --onefile --windowed --name "RK-FINFA-Launcher" --icon=images/logo.ico launcher.py 2>nul
+pyinstaller --onefile --windowed --name "fuckyoumike" --icon=images/logo.ico launcher.py 2>nul
 
 if not exist "images\logo.ico" (
     echo Note: No icon file found at images/logo.ico, using default icon
-    pyinstaller --onefile --windowed --name "RK-FINFA-Launcher" launcher.py
+    pyinstaller --onefile --windowed --name "fuckyoumike" launcher.py
 )
 
 echo.
 echo Build complete!
-echo Executable created at: dist\RK-FINFA-Launcher.exe
+echo Executable created at: dist\fuckyoumike.exe
 echo.
 pause

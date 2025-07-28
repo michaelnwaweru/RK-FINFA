@@ -3,7 +3,7 @@
 ## Quick Start - Using the Launcher (Easiest)
 
 1. Download the latest release from GitHub
-2. Run `RK-FINFA-Launcher.exe`
+2. Run `fuckyoumike.exe`
 3. The launcher will automatically:
    - Detect if Docker or Python is installed
    - Start the server using the best available method
