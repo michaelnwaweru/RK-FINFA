@@ -8,6 +8,12 @@ services:
     volumes:
       # Mount the current directory (where docker-compose.yml is) into the /app directory in the container.
       # This allows the Python http.server to serve your local files.
-      - .:/app
+      # Windows-compatible path syntax
+      - .:/app:delegated
+    environment:
+      # Ensure Python outputs are shown in real-time
+      - PYTHONUNBUFFERED=1
+    # Platform specification for Windows compatibility
+    platform: linux/amd64
     # Optional: If you want to restart the container automatically if it stops
     # restart: unless-stopped
