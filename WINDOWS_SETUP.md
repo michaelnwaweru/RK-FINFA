@@ -1,5 +1,23 @@
 # Windows Setup Guide for RK-FINFA PMIS
 
+## Quick Start - Using the Launcher (Easiest)
+
+1. Download the latest release from GitHub
+2. Run `RK-FINFA-Launcher.exe`
+3. The launcher will automatically:
+   - Detect if Docker or Python is installed
+   - Start the server using the best available method
+   - Open your browser to http://localhost:8020
+
+## Building the Launcher from Source
+
+If you want to build the .exe file yourself:
+
+1. Install Python 3.7+ from [python.org](https://www.python.org/downloads/)
+2. Clone the repository
+3. Run `build-exe.bat`
+4. Find the executable in the `dist` folder
+
 ## Prerequisites
 
 ### Option 1: Using Python (Simplest)
