@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RK-FINFA - Project Management Information System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <img src="images/logo-placeholder.png" alt="RK-FINFA Logo" class="logo">
+                <h1>RK-FINFA PMIS</h1>
+                <p>Rural Kenya Financial Inclusion Facility</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Please login to your account</p>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" required placeholder="Enter your username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required placeholder="Enter your password">
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>&copy; 2024 Rural Kenya Financial Inclusion Facility</p>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h2>Empowering Rural Communities</h2>
+            <p>Managing financial inclusion projects across rural Kenya</p>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Real-time Project Tracking</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <span>Beneficiary Management</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-coins"></i>
+                    <span>Financial Monitoring</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Comprehensive Reporting</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/login.js"></script>
+</body>
+</html>

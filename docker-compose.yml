@@ -1,0 +1,13 @@
+version: '3.8' # Specify the Docker Compose file format version
+
+services:
+  pmis-dev-server: # Name of your service
+    build: . # Build the Docker image from the current directory (where the Dockerfile is located)
+    ports:
+      - "8020:8020" # Map port 8020 from the host to port 8020 in the container
+    volumes:
+      # Mount the current directory (where docker-compose.yml is) into the /app directory in the container.
+      # This allows the Python http.server to serve your local files.
+      - .:/app
+    # Optional: If you want to restart the container automatically if it stops
+    # restart: unless-stopped

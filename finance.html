@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance - RK-FINFA PMIS</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/finance.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo-placeholder.png" alt="RK-FINFA" class="sidebar-logo">
+                <h3>RK-FINFA PMIS</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="beneficiaries.html">
+                            <i class="fas fa-users"></i>
+                            <span>Beneficiaries</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="finance.html">
+                            <i class="fas fa-coins"></i>
+                            <span>Finance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Financial Management</h2>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="openNewDisbursementModal()">
+                        <i class="fas fa-plus"></i>
+                        New Disbursement
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="generateFinancialReport()">
+                        <i class="fas fa-chart-line"></i>
+                        Financial Report
+                    </button>
+                    
+                    <div class="notifications">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <img src="images/user-placeholder.png" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">John Doe</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Finance Content -->
+            <div class="finance-content">
+                <!-- Financial Overview -->
+                <div class="financial-overview">
+                    <div class="overview-card">
+                        <div class="card-icon total">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>Total Budget</h3>
+                            <p class="amount">KES 125.8M</p>
+                            <span class="change-indicator positive">
+                                <i class="fas fa-arrow-up"></i> 8% from last quarter
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon disbursed">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>Total Disbursed</h3>
+                            <p class="amount">KES 45.2M</p>
+                            <span class="change-indicator positive">
+                                <i class="fas fa-arrow-up"></i> 15% from last month
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon remaining">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>Remaining Budget</h3>
+                            <p class="amount">KES 80.6M</p>
+                            <span class="utilization">64% utilization rate</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="card-icon repayment">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>Loan Repayment</h3>
+                            <p class="amount">87%</p>
+                            <span class="change-indicator negative">
+                                <i class="fas fa-arrow-down"></i> 2% from last month
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <div class="chart-card">
+                            <div class="card-header">
+                                <h3>Disbursement Trends</h3>
+                                <select class="chart-filter">
+                                    <option value="6months">Last 6 Months</option>
+                                    <option value="year">This Year</option>
+                                    <option value="all">All Time</option>
+                                </select>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="disbursementChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-card">
+                            <div class="card-header">
+                                <h3>Budget Allocation by Project</h3>
+                                <button class="btn-icon">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="allocationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Disbursements Table -->
+                <div class="disbursements-section">
+                    <div class="section-header">
+                        <h3>Recent Disbursements</h3>
+                        <div class="filter-controls">
+                            <select id="statusFilter" class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="disbursed">Disbursed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            
+                            <select id="typeFilter" class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="grant">Grant</option>
+                                <option value="loan">Loan</option>
+                                <option value="equipment">Equipment</option>
+                                <option value="training">Training</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Disbursement ID</th>
+                                    <th>Project</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Beneficiaries</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DSB-2024-001</td>
+                                    <td>Kiambu Youth Empowerment</td>
+                                    <td>
+                                        <span class="type-badge grant">Grant</span>
+                                    </td>
+                                    <td class="amount-cell">KES 850,000</td>
+                                    <td>25</td>
+                                    <td>Mar 15, 2024</td>
+                                    <td>
+                                        <span class="status-badge disbursed">Disbursed</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" title="Download Receipt">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>DSB-2024-002</td>
+                                    <td>Meru Women's Cooperative</td>
+                                    <td>
+                                        <span class="type-badge loan">Loan</span>
+                                    </td>
+                                    <td class="amount-cell">KES 1,200,000</td>
+                                    <td>18</td>
+                                    <td>Mar 20, 2024</td>
+                                    <td>
+                                        <span class="status-badge approved">Approved</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" title="Process">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>DSB-2024-003</td>
+                                    <td>Turkana Agricultural Project</td>
+                                    <td>
+                                        <span class="type-badge equipment">Equipment</span>
+                                    </td>
+                                    <td class="amount-cell">KES 2,500,000</td>
+                                    <td>45</td>
+                                    <td>Mar 25, 2024</td>
+                                    <td>
+                                        <span class="status-badge pending">Pending</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" title="Approve">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn-icon" title="Reject">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>DSB-2024-004</td>
+                                    <td>Coastal Fishing Initiative</td>
+                                    <td>
+                                        <span class="type-badge training">Training</span>
+                                    </td>
+                                    <td class="amount-cell">KES 350,000</td>
+                                    <td>30</td>
+                                    <td>Mar 28, 2024</td>
+                                    <td>
+                                        <span class="status-badge disbursed">Disbursed</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" title="Download Receipt">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-card" onclick="generateBudgetReport()">
+                            <div class="action-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="action-text">
+                                <h4>Budget Report</h4>
+                                <p>Generate comprehensive budget analysis</p>
+                            </div>
+                        </button>
+                        
+                        <button class="action-card" onclick="reconcileAccounts()">
+                            <div class="action-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="action-text">
+                                <h4>Reconcile Accounts</h4>
+                                <p>Match disbursements with bank records</p>
+                            </div>
+                        </button>
+                        
+                        <button class="action-card" onclick="exportFinancialData()">
+                            <div class="action-icon">
+                                <i class="fas fa-file-export"></i>
+                            </div>
+                            <div class="action-text">
+                                <h4>Export Data</h4>
+                                <p>Download financial data for analysis</p>
+                            </div>
+                        </button>
+                        
+                        <button class="action-card" onclick="setReminders()">
+                            <div class="action-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="action-text">
+                                <h4>Set Reminders</h4>
+                                <p>Schedule payment and review reminders</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- New Disbursement Modal -->
+    <div id="newDisbursementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Disbursement</h3>
+                <button class="close-modal" onclick="closeNewDisbursementModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="newDisbursementForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="disbursementProject">Project</label>
+                        <select id="disbursementProject" required>
+                            <option value="">Select Project</option>
+                            <option value="kiambu-youth">Kiambu Youth Empowerment</option>
+                            <option value="meru-women">Meru Women's Cooperative</option>
+                            <option value="turkana-agri">Turkana Agricultural Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="disbursementType">Type</label>
+                        <select id="disbursementType" required>
+                            <option value="">Select Type</option>
+                            <option value="grant">Grant</option>
+                            <option value="loan">Loan</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="training">Training</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="disbursementAmount">Amount (KES)</label>
+                        <input type="number" id="disbursementAmount" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="disbursementDate">Disbursement Date</label>
+                        <input type="date" id="disbursementDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="disbursementDescription">Description</label>
+                    <textarea id="disbursementDescription" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="beneficiarySelection">Select Beneficiaries</label>
+                    <div class="beneficiary-list">
+                        <div class="beneficiary-item">
+                            <input type="checkbox" id="ben1" value="BEN-2024-001">
+                            <label for="ben1">Mary Wanjiru (BEN-2024-001)</label>
+                        </div>
+                        <div class="beneficiary-item">
+                            <input type="checkbox" id="ben2" value="BEN-2024-002">
+                            <label for="ben2">John Kamau (BEN-2024-002)</label>
+                        </div>
+                        <div class="beneficiary-item">
+                            <input type="checkbox" id="ben3" value="BEN-2024-003">
+                            <label for="ben3">Peter Ochieng (BEN-2024-003)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeNewDisbursementModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Disbursement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/finance.js"></script>
+</body>
+</html>

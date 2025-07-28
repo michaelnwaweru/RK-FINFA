@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiaries - RK-FINFA PMIS</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/beneficiaries.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo-placeholder.png" alt="RK-FINFA" class="sidebar-logo">
+                <h3>RK-FINFA PMIS</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="beneficiaries.html">
+                            <i class="fas fa-users"></i>
+                            <span>Beneficiaries</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="finance.html">
+                            <i class="fas fa-coins"></i>
+                            <span>Finance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Beneficiaries Management</h2>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="openNewBeneficiaryModal()">
+                        <i class="fas fa-user-plus"></i>
+                        Add Beneficiary
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="exportBeneficiaries()">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    
+                    <div class="notifications">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <img src="images/user-placeholder.png" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">John Doe</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Beneficiaries Content -->
+            <div class="beneficiaries-content">
+                <!-- Stats Overview -->
+                <div class="stats-row">
+                    <div class="stat-mini">
+                        <div class="stat-icon-mini blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details-mini">
+                            <h4>Total Beneficiaries</h4>
+                            <p>15,847</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-mini">
+                        <div class="stat-icon-mini green">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-details-mini">
+                            <h4>Active</h4>
+                            <p>12,543</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-mini">
+                        <div class="stat-icon-mini orange">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-details-mini">
+                            <h4>Graduated</h4>
+                            <p>2,984</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-mini">
+                        <div class="stat-icon-mini red">
+                            <i class="fas fa-user-times"></i>
+                        </div>
+                        <div class="stat-details-mini">
+                            <h4>Dropped Out</h4>
+                            <p>320</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filters and Search -->
+                <div class="filters-section">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search by name, ID, phone..." id="searchBeneficiary">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <select id="projectFilter" class="filter-select">
+                            <option value="">All Projects</option>
+                            <option value="kiambu-youth">Kiambu Youth Empowerment</option>
+                            <option value="meru-women">Meru Women's Cooperative</option>
+                            <option value="turkana-agri">Turkana Agricultural Project</option>
+                            <option value="coastal-fishing">Coastal Fishing Initiative</option>
+                        </select>
+                        
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="graduated">Graduated</option>
+                            <option value="dropped">Dropped Out</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                        
+                        <select id="genderFilter" class="filter-select">
+                            <option value="">All Genders</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Beneficiaries Table -->
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll"></th>
+                                <th>Beneficiary ID</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>County</th>
+                                <th>Project</th>
+                                <th>Status</th>
+                                <th>Enrollment Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="select-row"></td>
+                                <td>BEN-2024-001</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="images/user-placeholder.png" alt="Mary" class="user-thumb">
+                                        <span>Mary Wanjiru</span>
+                                    </div>
+                                </td>
+                                <td>Female</td>
+                                <td>28</td>
+                                <td>Kiambu</td>
+                                <td>Kiambu Youth Empowerment</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Jan 15, 2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><input type="checkbox" class="select-row"></td>
+                                <td>BEN-2024-002</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="images/user-placeholder.png" alt="John" class="user-thumb">
+                                        <span>John Kamau</span>
+                                    </div>
+                                </td>
+                                <td>Male</td>
+                                <td>32</td>
+                                <td>Meru</td>
+                                <td>Meru Women's Cooperative</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Feb 10, 2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><input type="checkbox" class="select-row"></td>
+                                <td>BEN-2023-458</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="images/user-placeholder.png" alt="Grace" class="user-thumb">
+                                        <span>Grace Muthoni</span>
+                                    </div>
+                                </td>
+                                <td>Female</td>
+                                <td>35</td>
+                                <td>Kilifi</td>
+                                <td>Coastal Fishing Initiative</td>
+                                <td><span class="status-badge graduated">Graduated</span></td>
+                                <td>Mar 20, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><input type="checkbox" class="select-row"></td>
+                                <td>BEN-2024-003</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="images/user-placeholder.png" alt="Peter" class="user-thumb">
+                                        <span>Peter Ochieng</span>
+                                    </div>
+                                </td>
+                                <td>Male</td>
+                                <td>25</td>
+                                <td>Turkana</td>
+                                <td>Turkana Agricultural Project</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Jan 25, 2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="page-dots">...</span>
+                    <button class="page-btn">25</button>
+                    <button class="page-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- New Beneficiary Modal -->
+    <div id="newBeneficiaryModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Add New Beneficiary</h3>
+                <button class="close-modal" onclick="closeNewBeneficiaryModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="newBeneficiaryForm">
+                <div class="form-tabs">
+                    <button type="button" class="tab-btn active" onclick="switchTab('personal')">Personal Info</button>
+                    <button type="button" class="tab-btn" onclick="switchTab('contact')">Contact Details</button>
+                    <button type="button" class="tab-btn" onclick="switchTab('project')">Project Assignment</button>
+                </div>
+                
+                <div id="personalTab" class="tab-content active">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nationalId">National ID</label>
+                            <input type="text" id="nationalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="maritalStatus">Marital Status</label>
+                            <select id="maritalStatus">
+                                <option value="">Select Status</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="divorced">Divorced</option>
+                                <option value="widowed">Widowed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="contactTab" class="tab-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="tel" id="phoneNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="county">County</label>
+                            <select id="county" required>
+                                <option value="">Select County</option>
+                                <option value="kiambu">Kiambu</option>
+                                <option value="meru">Meru</option>
+                                <option value="turkana">Turkana</option>
+                                <option value="kilifi">Kilifi</option>
+                                <option value="nairobi">Nairobi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="subCounty">Sub-County</label>
+                            <input type="text" id="subCounty" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ward">Ward</label>
+                            <input type="text" id="ward">
+                        </div>
+                        <div class="form-group">
+                            <label for="village">Village</label>
+                            <input type="text" id="village">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="projectTab" class="tab-content">
+                    <div class="form-group">
+                        <label for="projectAssignment">Assign to Project</label>
+                        <select id="projectAssignment" required>
+                            <option value="">Select Project</option>
+                            <option value="kiambu-youth">Kiambu Youth Empowerment</option>
+                            <option value="meru-women">Meru Women's Cooperative</option>
+                            <option value="turkana-agri">Turkana Agricultural Project</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="enrollmentDate">Enrollment Date</label>
+                            <input type="date" id="enrollmentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="householdSize">Household Size</label>
+                            <input type="number" id="householdSize" min="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <input type="text" id="occupation">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="educationLevel">Education Level</label>
+                        <select id="educationLevel">
+                            <option value="">Select Education Level</option>
+                            <option value="none">No Formal Education</option>
+                            <option value="primary">Primary</option>
+                            <option value="secondary">Secondary</option>
+                            <option value="tertiary">Tertiary</option>
+                            <option value="university">University</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeNewBeneficiaryModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Beneficiary</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/beneficiaries.js"></script>
+</body>
+</html>
